@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>.</DockerfileContext>
+    <UserSecretsId>bd526322-f9aa-4d73-b2c2-2f5e00bff934</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.15.1" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Hashing\Hashing.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\3rdpartylicenses.txt" />
+    <_ContentIncludedByDefault Remove="wwwroot\assets\background-image-laptop-2.jfif" />
+    <_ContentIncludedByDefault Remove="wwwroot\assets\background-image-laptop.jfif" />
+    <_ContentIncludedByDefault Remove="wwwroot\assets\laptop-taskmanager-2.jpeg" />
+    <_ContentIncludedByDefault Remove="wwwroot\assets\laptop-taskmanager.jpeg" />
+    <_ContentIncludedByDefault Remove="wwwroot\assets\logo.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\favicon.ico" />
+    <_ContentIncludedByDefault Remove="wwwroot\index.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\laptop-taskmanager.de683af79d947b69.jpeg" />
+    <_ContentIncludedByDefault Remove="wwwroot\main.ef071e0b74f60b58.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\polyfills.023d1514079760ef.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\runtime.a51755e27ccdbba1.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\scripts.5ddd2782afbe2708.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\styles.091039bed7d82f81.css" />
+  </ItemGroup>
+
+</Project>
