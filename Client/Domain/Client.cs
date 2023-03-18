@@ -51,6 +51,7 @@ internal class Client
         var data = new StringContent(json, Encoding.UTF8, "application/json");
 
         var response = await httpClient.PostAsync(uri, data);
+
         var result = await response.Content.ReadAsStringAsync();
         return result;
     }
