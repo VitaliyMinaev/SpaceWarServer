@@ -34,33 +34,27 @@ public class AccountRepository : IAccountRepository
         await _context.Accounts.AddAsync(account);
         int updated = await _context.SaveChangesAsync();
 
-        return new AccountOperationsResult
-        {
-            Success = updated > 0,
-            Errors = new string[]
-            {
-                "Can not create an account. Something goes wrong with database"
-            }
-        };
+        return updated > 0 ? new AccountOperationsResult { Success = true, Account = account } : 
+            new AccountOperationsResult { Success = false, 
+                Errors = new string[] { "Initial server error", "Can not create an account" } };
     }
+    
     public async Task<AccountEntity?> GetAccountByEmailAndPasswordAsync(string email, string password)
     {
         return await _context.Accounts
-            .FirstOrDefaultAsync(x => x.Email == email && x.Password == password);
+            .FirstOrDefaultAsync(x => x.Email == email && x.PasswordHash == password);
     }
+    
     public async Task<AccountOperationsResult> ChangeUsernameAsync(string email, string passwordHash, string newUsername)
     {
         var account = await GetAccountByEmailAndPasswordAsync(email, passwordHash);
 
         if (account == null)
         {
-            return new AccountOperationsResult
-            {
-                Success = false,
-                Errors = new string[]
-                {
-                    "User with given email address and password does not exist"
-                }
+            return new AccountOperationsResult 
+            { 
+                Success = false, 
+                Errors = new string[] { "User with given email address and password does not exist" }
             };
         }
 
@@ -68,7 +62,7 @@ public class AccountRepository : IAccountRepository
         int updated = await _context.SaveChangesAsync();
 
         return updated > 0 ? new AccountOperationsResult { Success = true, Errors = null, Account = account }
-           : new AccountOperationsResult { Success = false, Errors = new[] { "Can not update account data" } };
+           : new AccountOperationsResult { Success = false, Errors = new[] { "Initial server error", "Can not update account data" } };
     }
     public async Task<AccountOperationsResult> ChangePasswordAsync(Guid accountId, string oldPasswordHash, string newPasswordHash)
     {
@@ -86,7 +80,7 @@ public class AccountRepository : IAccountRepository
             };
         }
 
-        if(account.Password != oldPasswordHash)
+        if(account.PasswordHash != oldPasswordHash)
         {
             return new AccountOperationsResult
             {
@@ -98,11 +92,11 @@ public class AccountRepository : IAccountRepository
             };
         }
 
-        account.Password = newPasswordHash;
+        account.PasswordHash = newPasswordHash;
         int updated = await _context.SaveChangesAsync();
 
         return updated > 0 ? new AccountOperationsResult { Success = true, Errors = null, Account = account } 
-         : new AccountOperationsResult { Success = false, Errors = new[] { "Can not update account data" } };
+         : new AccountOperationsResult { Success = false, Errors = new[] { "Initial server error", "Can not update account data" } };
     }
 
     public async Task<AccountEntity?> FindByEmailAsync(string email)

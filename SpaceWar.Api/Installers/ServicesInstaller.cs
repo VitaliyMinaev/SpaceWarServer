@@ -14,6 +14,7 @@ public class ServicesInstaller : IInstaller
         services.AddScoped<IAccountService, AccountService>();
 
         services.AddScoped<IGeneratorGwtStrategy, DefaultGeneratorGwtStrategy>();
+        services.AddScoped<IHashService, Sha256HashService>();
         services.AddSingleton<IClaimParser, ClaimParser>();
     }
 }
