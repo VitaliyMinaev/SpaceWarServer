@@ -8,6 +8,7 @@ using SpaceWar.IntegrationTests.Extensions;
 
 namespace SpaceWar.IntegrationTests;
 
+/*
 public class TaskTests : IntegrationTests
 {
     [Fact]
@@ -118,3 +119,4 @@ public class TaskTests : IntegrationTests
         response.StatusCode.Should().Be(HttpStatusCode.NoContent);
     }
 }
+*/

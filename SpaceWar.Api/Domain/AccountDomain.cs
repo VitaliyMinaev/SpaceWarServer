@@ -1,5 +1,5 @@
-﻿using Hashing;
-using SpaceWar.Api.Domain.Abstract;
+﻿using SpaceWar.Api.Domain.Abstract;
+using SpaceWar.Api.Services.Abstract;
 
 namespace SpaceWar.Api.Domain;
 
@@ -17,22 +17,18 @@ public class AccountDomain : BaseDomain
         PasswordHash = String.Empty;
         Roles = new string[0];
     }
-    public AccountDomain(string username, string email, string password)
+    public AccountDomain(string username, string email, string password, IHashService hashService)
     {
         Username = username;
         Email = email;
-        PasswordHash = Sha256Alghorithm.GenerateHash(password);
+        PasswordHash = hashService.GenerateHash(password);
         Roles = new string[] { "user" };
     }
-    public AccountDomain(string username, string email, string password, string[] roles)
+    public AccountDomain(string username, string email, string password, string[] roles, IHashService hashService)
     {
         Username = username;
         Email = email;
-        PasswordHash = Sha256Alghorithm.GenerateHash(password);
+        PasswordHash = hashService.GenerateHash(password);
         Roles = roles;
-    }
-    public void ChangePassword(string newPassword)
-    {
-        PasswordHash = Sha256Alghorithm.GenerateHash(newPassword);
     }
 }

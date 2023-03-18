@@ -13,17 +13,19 @@ public class AccountController : ControllerBase
 {
     private readonly IClaimParser _claimParser;
     private readonly IAccountService _accountService;
-    public AccountController(IAccountService accountService, IClaimParser claimParser)
+    private readonly IHashService hashService;
+    public AccountController(IAccountService accountService, IClaimParser claimParser, IHashService hashService)
     {
         _accountService = accountService;
         _claimParser = claimParser;
+        this.hashService = hashService;
     }
 
     [HttpPost, Route(ApiRoutes.Account.Register)]
     public async Task<IActionResult> Register([FromBody] AccountRegistrationRequest request)
     {
         AuthenticationResult result = await _accountService
-            .RegisterAsync(new AccountDomain(request.Username, request.Email, request.Password));
+            .RegisterAsync(new AccountDomain(request.Username, request.Email, request.Password, hashService));
 
         if(result.Success == false)
         {

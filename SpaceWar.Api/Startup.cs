@@ -37,8 +37,7 @@ public class Startup
 
         app.MapControllers();
 
-        if(Environment.GetEnvironmentVariable("ConnectionString") != null)
-            DatabasePreparations.Migrate(app, app.Logger);
+        DatabasePreparations.Migrate(app, app.Logger);
 
         app.Run();
     }
