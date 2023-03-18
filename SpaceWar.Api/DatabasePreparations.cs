@@ -5,7 +5,7 @@ namespace SpaceWar.Api;
 
 public class DatabasePreparations
 {
-    public static void Prepare(IApplicationBuilder applicationBuilder, ILogger logger)
+    public static void Migrate(IApplicationBuilder applicationBuilder, ILogger logger)
     {
         using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
         {

@@ -10,5 +10,4 @@ public class ApplicationDataContext : DbContext
     { }
 
     public DbSet<AccountEntity> Accounts { get; set; }
-    public DbSet<TaskEntity> Tasks { get; set; }
 }

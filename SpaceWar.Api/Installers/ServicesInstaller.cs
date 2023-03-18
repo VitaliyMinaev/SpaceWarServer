@@ -11,7 +11,6 @@ public class ServicesInstaller : IInstaller
     public void InstallService(IServiceCollection services, IConfiguration configuration,
         ILogger<Startup> logger)
     {
-        services.AddScoped<ITaskService, TaskService>();
         services.AddScoped<IAccountService, AccountService>();
 
         services.AddScoped<IGeneratorGwtStrategy, DefaultGeneratorGwtStrategy>();

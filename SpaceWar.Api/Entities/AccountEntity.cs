@@ -15,5 +15,4 @@ public class AccountEntity : BaseEntity
     public string? Password { get; set; }
 
     public ICollection<RoleEntity>? Roles { get; set; }
-    public ICollection<TaskEntity>? Tasks { get; set; }
 }

@@ -62,18 +62,4 @@ public class IntegrationTests
         var responseToken = JsonSerializer.Deserialize<AuthorizationSuccessResponse>(json);
         return responseToken.access_token;
     }
-
-    protected async Task<HttpResponseMessage> CreateTaskAsync(CreateTaskRequest taskRequest)
-    {
-        return await httpClient.PostAsJsonAsync(ApiRoutes.Task.Create, taskRequest);
-    }
-    protected async Task<HttpResponseMessage> UpdateTaskAsync(Guid taskId, UpdateTaskRequest taskRequest)
-    {
-        return await httpClient.PutAsJsonAsync(ApiRoutes.Task.Update.Replace("{taskId}", taskId.ToString())
-            , taskRequest);
-    }
-    protected async Task<HttpResponseMessage> DeleteTaskAsync(Guid taskId)
-    {
-        return await httpClient.DeleteAsync(ApiRoutes.Task.Delete.Replace("{taskId}", taskId.ToString()));
-    }
 }

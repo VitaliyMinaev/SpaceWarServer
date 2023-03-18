@@ -12,8 +12,8 @@ public class SwaggerInstaller : IInstaller
         {
             option.SwaggerDoc("v1", new OpenApiInfo
             {
-                Title = "Task manager api",
-                Description = "This is api for tsak manager app",
+                Title = "Space war api",
+                Description = "This is api for game Space War",
                 Version = "v1"
             });
 
